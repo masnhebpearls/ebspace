@@ -38,17 +38,10 @@ class LogInRepoImpl extends LogInRepo {
           final Dio zohoDio = ZohoDio().zohoDio;
 
           final response = await zohoDio.post(
-            'https://accounts.zoho.com/oauth/v2/token',
-            data: {
-              'grant_type': 'authorization_code',
-              'client_id': EnvVars.zohoClientId,
-              'client_secret': EnvVars.zohoClientSecret,
-              'redirect_uri': Uri.encodeComponent(EnvVars.redirectUrl),
-              'code': code,
-            },
+            'https://accounts.zoho.com/oauth/v2/token?code=$code&grant_type=authorization_code&client_id=1000.60088PO4H8F74YSBCOZ23TTHNPSHYA&client_secret=abef20ea9f4d256078384472d034ec20a132f3d5ef&redirect_uri=com.example.ebspace://oauth2redirect',
           );
 
-          print('Response: ${response.requestOptions}');
+          print('Response: $response');
         }
       }
     }, onError: (err) {
